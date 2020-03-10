@@ -6,7 +6,7 @@ namespace PALM_Lab_2_2
 
     class Helper
     {
-        public static int[][] InputArrayInt(int n, int m)
+        public static int[][] InputArray2DInt(int n, int m)
         {
             int[][] a = new int[n][];
             for (int i = 0; i < n; i++)
@@ -16,7 +16,13 @@ namespace PALM_Lab_2_2
             return a;
         }
 
-        public static double[][] InputArrayDouble(int n, int m)
+        public static int[] InputArrayInt(int n)
+        {
+            int[] a = Array.ConvertAll(Console.ReadLine().Trim().Split(), int.Parse);
+            return a;
+        }
+
+        public static double[][] InputArray2DDouble(int n, int m)
         {
             double[][] a = new double[n][];
             for (int i = 0; i < n; i++)
@@ -25,7 +31,6 @@ namespace PALM_Lab_2_2
             }
             return a;
         }
-
 
         public static void PrintArray<T>(T[][] a)
         {
@@ -38,6 +43,16 @@ namespace PALM_Lab_2_2
                 Console.WriteLine();
             }
         }
+
+        public static void PrintArray<T>(T[] a)
+        {
+            foreach (var i in a)
+            {
+                Console.Write($"{i} ");
+            }
+            Console.WriteLine();
+
+        }
     }
 
     class Main_Class
@@ -49,7 +64,7 @@ namespace PALM_Lab_2_2
             Console.Write("M = ");
             int m = int.Parse(Console.ReadLine());
 
-            int[][] a = Helper.InputArrayInt(n, m);
+            int[][] a = Helper.InputArray2DInt(n, m);
 
             bool containsNeg = false;
 
@@ -76,7 +91,7 @@ namespace PALM_Lab_2_2
             Console.Write("N = ");
             int n = int.Parse(Console.ReadLine());
 
-            int[][] a = Helper.InputArrayInt(n, n);
+            int[][] a = Helper.InputArray2DInt(n, n);
 
             int mx = int.MinValue, mxi = -1;
 
@@ -105,31 +120,22 @@ namespace PALM_Lab_2_2
 
         static void Task_C()
         {
-            Console.WriteLine("N = ");
+            Console.Write("N = ");
             int n = int.Parse(Console.ReadLine());
-            Console.WriteLine("M = ");
-            int m = int.Parse(Console.ReadLine());
 
-            int[][] a = Helper.InputArrayInt(n, m);
+            int[] a = Helper.InputArrayInt(n);
 
-            bool containsNeg = false;
+            Console.Write("K = ");
+            int k = int.Parse(Console.ReadLine());
 
-            for (int i = 0; i < n; i++)
-            {
-                containsNeg = false;
-                foreach (var j in a[i])
-                {
-                    containsNeg |= j < 0;
-                }
-                if (!containsNeg)
-                {
-                    Console.WriteLine($"First without negatives {i + 1}");
-                    Console.ReadKey();
-                    return;
-                }
-            }
+            int[] a_add = Helper.InputArrayInt(k);
 
-            Console.WriteLine("Each row contains negative");
+            Array.Resize(ref a, n + k);
+            a_add.CopyTo(a, n);
+
+            Console.WriteLine("Result array: ");
+
+            Helper.PrintArray(a);
         }
 
         static void Task_D()
@@ -139,7 +145,7 @@ namespace PALM_Lab_2_2
             Console.WriteLine("M = ");
             int m = int.Parse(Console.ReadLine());
 
-            int[][] a = Helper.InputArrayInt(n, m);
+            int[][] a = Helper.InputArray2DInt(n, m);
 
             bool containsNeg = false;
 

@@ -147,24 +147,37 @@ namespace PALM_Lab_2_2
 
             int[][] a = Helper.InputArray2DInt(n, m);
 
-            bool containsNeg = false;
+            int mx = int.MinValue, mxi = -1;
 
             for (int i = 0; i < n; i++)
             {
-                containsNeg = false;
                 foreach (var j in a[i])
                 {
-                    containsNeg |= j < 0;
-                }
-                if (!containsNeg)
-                {
-                    Console.WriteLine($"First without negatives {i + 1}");
-                    Console.ReadKey();
-                    return;
+                    if (j >= mx)
+                    {
+                        mx = j; mxi = i;
+                    }
                 }
             }
 
-            Console.WriteLine("Each row contains negative");
+            Array.Resize(ref a, n + 1);
+
+            Random rnd = new Random();
+            int[] add = new int[m];
+            for (int i = 0; i < m; i++)
+            {
+                add[i] = rnd.Next();
+            }
+
+            for (int i = n + 1 - 1; i > mxi; i--)
+            {
+                a[i] = a[i - 1];
+            }
+            Console.WriteLine("Result array: ");
+
+            a[mxi] = add;
+
+            Helper.PrintArray(a);
         }
 
         static void Main()

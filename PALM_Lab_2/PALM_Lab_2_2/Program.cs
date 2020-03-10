@@ -73,31 +73,34 @@ namespace PALM_Lab_2_2
 
         static void Task_B()
         {
-            Console.WriteLine("N = ");
+            Console.Write("N = ");
             int n = int.Parse(Console.ReadLine());
-            Console.WriteLine("M = ");
-            int m = int.Parse(Console.ReadLine());
 
-            int[][] a = Helper.InputArrayInt(n, m);
+            int[][] a = Helper.InputArrayInt(n, n);
 
-            bool containsNeg = false;
+            int mx = int.MinValue, mxi = -1;
 
             for (int i = 0; i < n; i++)
             {
-                containsNeg = false;
                 foreach (var j in a[i])
                 {
-                    containsNeg |= j < 0;
-                }
-                if (!containsNeg)
-                {
-                    Console.WriteLine($"First without negatives {i + 1}");
-                    Console.ReadKey();
-                    return;
+                    if (j > mx)
+                    {
+                        mx = j; mxi = i;
+                    }
                 }
             }
 
-            Console.WriteLine("Each row contains negative");
+            for (int j = 0; j < n; j++)
+            {
+                int temp = a[mxi][j];
+                a[mxi][j] = a[n - j - 1][j];
+                a[n - j - 1][j] = temp;
+            }
+
+            Console.WriteLine("Result array:");
+
+            Helper.PrintArray(a);
         }
 
         static void Task_C()

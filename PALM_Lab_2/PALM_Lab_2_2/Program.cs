@@ -55,7 +55,7 @@ namespace PALM_Lab_2_2
         }
     }
 
-    class Main_Class
+    class MainClass
     {
         static void Task_A()
         {
@@ -64,9 +64,10 @@ namespace PALM_Lab_2_2
             Console.Write("M = ");
             int m = int.Parse(Console.ReadLine());
 
+            Console.WriteLine("Input initial elements: ");
             int[][] a = Helper.InputArray2DInt(n, m);
 
-            bool containsNeg = false;
+            bool containsNeg;
 
             for (int i = 0; i < n; i++)
             {
@@ -77,7 +78,7 @@ namespace PALM_Lab_2_2
                 }
                 if (!containsNeg)
                 {
-                    Console.WriteLine($"First without negatives {i + 1}");
+                    Console.WriteLine($"First without negatives: {i + 1}");
                     Console.ReadKey();
                     return;
                 }
@@ -91,6 +92,7 @@ namespace PALM_Lab_2_2
             Console.Write("N = ");
             int n = int.Parse(Console.ReadLine());
 
+            Console.WriteLine("Input initial elements: ");
             int[][] a = Helper.InputArray2DInt(n, n);
 
             int mx = int.MinValue, mxi = -1;
@@ -122,12 +124,12 @@ namespace PALM_Lab_2_2
         {
             Console.Write("N = ");
             int n = int.Parse(Console.ReadLine());
-
+            Console.WriteLine("Input initial elements: ");
             int[] a = Helper.InputArrayInt(n);
 
             Console.Write("K = ");
             int k = int.Parse(Console.ReadLine());
-
+            Console.WriteLine("Input elements to be added: ");
             int[] a_add = Helper.InputArrayInt(k);
 
             Array.Resize(ref a, n + k);
@@ -140,11 +142,12 @@ namespace PALM_Lab_2_2
 
         static void Task_D()
         {
-            Console.WriteLine("N = ");
+            Console.Write("N = ");
             int n = int.Parse(Console.ReadLine());
-            Console.WriteLine("M = ");
+            Console.Write("M = ");
             int m = int.Parse(Console.ReadLine());
 
+            Console.WriteLine("Input initial elements: ");
             int[][] a = Helper.InputArray2DInt(n, m);
 
             int mx = int.MinValue, mxi = -1;

@@ -1,7 +1,11 @@
-﻿using System;
+﻿// Rostyslav L. PALM 2nd sem, 3rd lab, 1st variant
+// Rights are not reserved.
+
+using System;
 
 namespace PALM_Lab_2_3
 {
+
     struct MyTime
     {
         public int hour, minute, second;

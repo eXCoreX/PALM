@@ -21,6 +21,45 @@ namespace PALM_Lab_2_3
 
     class Program
     {
+        static int TimeSinceMidnight(MyTime t)
+        {
+            return 0;
+        }
+
+        static MyTime TimeSinceMidnight(int s)
+        {
+            return new MyTime();
+        }
+
+        static MyTime AddOneSecond(MyTime t)
+        {
+            return t;
+        }
+
+        static MyTime AddOneMinute(MyTime t)
+        {
+            return t;
+        }
+
+        static MyTime AddOneHour(MyTime t)
+        {
+            return t;
+        }
+
+        static MyTime AddSeconds(MyTime t, int s)
+        {
+            return t;
+        }
+
+        static int Difference(MyTime t1, MyTime t2)
+        {
+            return 0;
+        }
+
+        static string WhatLesson(MyTime t)
+        {
+            return "";
+        }
 
         static void Main(string[] args)
         {

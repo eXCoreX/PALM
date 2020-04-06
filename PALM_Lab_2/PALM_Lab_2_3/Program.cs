@@ -47,11 +47,7 @@ namespace PALM_Lab_2_3
 
         static MyTime TimeSinceMidnight(int s)
         {
-            int h = s / 60 / 60;
-            s -= h * 60 * 60;
-            int m = s / 60;
-            s -= m * 60;
-            MyTime res = new MyTime(h, m, s);
+            MyTime res = new MyTime(0, 0, s);
             res.Normalize();
             return res;
         }
@@ -99,18 +95,16 @@ namespace PALM_Lab_2_3
             {
                 t = AddSeconds(t, -8 * 60 * 60);
                 int les_num = 1;
-                while (les_num < 5 && (TimeSinceMidnight(t) >= 1 * 60 * 60 + 40 * 60)) // Counting lessons
+                while (les_num < 5 && (TimeSinceMidnight(t) >= 1 * 60 * 60 + 40 * 60)) // Counting lessons and breaks 1 through 4
                 {
                     les_num++;
                     t = AddSeconds(t, -1 * 60 * 60 - 40 * 60);
                 }
-                if (TimeSinceMidnight(t) >= 1 * 60 * 60 + 30 * 60)
+                if (TimeSinceMidnight(t) >= 1 * 60 * 60 + 30 * 60) // after 5th lesson break is 10mins long
                 {
                     les_num++;
                     t = AddSeconds(t, -1 * 60 * 60 - 30 * 60);
                 }
-                //int les_num = TimeSinceMidnight(t) / 1 * 60 * 60 + 40 * 60; // Current lesson num or break after it
-                //AddSeconds(t, -(les_num - 1) * (1 * 60 * 60 + 40 * 60)); // Substracting passed lessons and breaks, except last lesson
 
                 if (TimeSinceMidnight(t) < 1 * 60 * 60 + 20 * 60)
                 {

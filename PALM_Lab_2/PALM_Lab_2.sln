@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PALM_Lab_2_2", "PALM_Lab_2_2\PALM_Lab_2_2.csproj", "{FA8853F6-3B79-4189-9668-2859D2B9E786}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PALM_Lab_2_3", "PALM_Lab_2_3\PALM_Lab_2_3.csproj", "{04CA0F69-458A-4931-B807-799173C28716}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -13,5 +15,9 @@ Global
 		{FA8853F6-3B79-4189-9668-2859D2B9E786}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FA8853F6-3B79-4189-9668-2859D2B9E786}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FA8853F6-3B79-4189-9668-2859D2B9E786}.Release|Any CPU.Build.0 = Release|Any CPU
+		{04CA0F69-458A-4931-B807-799173C28716}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{04CA0F69-458A-4931-B807-799173C28716}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{04CA0F69-458A-4931-B807-799173C28716}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{04CA0F69-458A-4931-B807-799173C28716}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

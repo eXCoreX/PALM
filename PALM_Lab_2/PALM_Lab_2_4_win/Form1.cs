@@ -45,6 +45,8 @@ namespace PALM_Lab_2_4_win
         readonly Pen b = new Pen(Color.Blue);
         readonly Pen r = new Pen(Color.Red);
         readonly Pen g = new Pen(Color.Green);
+        readonly Pen bl = new Pen(Color.Black, 4);
+        readonly SolidBrush bl_b = new SolidBrush(Color.Black);
         readonly SolidBrush y = new SolidBrush(Color.Yellow);
         // Square
         int sq_CurX = 5, sq_CurY = 5;
@@ -88,9 +90,24 @@ namespace PALM_Lab_2_4_win
             e.Graphics.DrawRectangle(r, new Rectangle(sq_CurX, sq_CurY, 50, 50)); // Square
 
             e.Graphics.DrawPolygon(g, new Point[] { new Point(30, 30), new Point(30, 90), new Point(80, 90) }); // Sq Triangle
-            e.Graphics.DrawEllipse(b, new Rectangle(140, 180, 100, 60)); // Ellipse
+            e.Graphics.DrawEllipse(b, new Rectangle(140, 180, 100, 60)); // Ellipse 
             e.Graphics.FillPolygon(y, new Point[] { new Point(300, 300), new Point(315, 335), new Point(360, 340), new Point(330, 360), new Point(350, 390), new Point(300, 370), 
-                                                    new Point(250, 390), new Point(270, 360), new Point(240, 340), new Point(285, 335) }); // Star
+                                                    new Point(250, 390), new Point(270, 360), new Point(240, 340), new Point(285, 335) }); // Star 
+
+            #region BicycleDrawing
+            e.Graphics.DrawEllipse(bl, new Rectangle(500, 400, 50, 50));
+            e.Graphics.DrawEllipse(bl, new Rectangle(590, 400, 50, 50));
+            e.Graphics.DrawLine(bl, 525, 425, 565, 425);
+            e.Graphics.FillEllipse(bl_b, 555, 415, 20, 20);
+            e.Graphics.DrawLine(bl, 565, 425, 600, 385);
+            e.Graphics.DrawLine(bl, 600, 385, 615, 425);
+            e.Graphics.DrawLine(bl, 600, 385, 545, 385);
+            e.Graphics.DrawLine(bl, 545, 385, 525, 425);
+            e.Graphics.DrawLine(bl, 545, 385, 565, 425);
+            e.Graphics.DrawLine(bl, 545, 385, 540, 370);
+            e.Graphics.DrawLine(bl, 530, 370, 555, 370);
+            e.Graphics.DrawLine(bl, 600, 385, 600, 375);
+            #endregion
 
         }
     }

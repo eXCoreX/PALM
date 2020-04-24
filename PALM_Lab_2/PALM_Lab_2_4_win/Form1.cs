@@ -1,4 +1,6 @@
-﻿using System;
+﻿// Rostyslav L. Lab 4 Var 13
+
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,9 +14,9 @@ using System.Windows.Forms;
 
 namespace PALM_Lab_2_4_win
 {
-    public partial class Form1 : Form
+    public partial class MainForm : Form
     {
-        public Form1()
+        public MainForm()
         {
             InitializeComponent();
             this.DoubleBuffered = true;
@@ -51,6 +53,11 @@ namespace PALM_Lab_2_4_win
         // Square
         int sq_CurX = 5, sq_CurY = 5;
         int sq_VX = 5, sq_VY = 5;
+
+        // Square around circle
+        int ssq_CurX = 0, ssq_CurY =  0;
+        int ssq_VX = -2, ssq_VY = 0;
+        int state = 1; // 1 left 2 up 3 right 4 down
 
         protected override void OnPaint(PaintEventArgs e)
         {
@@ -109,6 +116,65 @@ namespace PALM_Lab_2_4_win
             e.Graphics.DrawLine(bl, 600, 385, 600, 375);
             #endregion
 
+            #region Task C
+            e.Graphics.DrawEllipse(g, this.Width / 2 - 40, this.Height / 2 - 40, 80, 80);
+
+            switch (state)
+            {
+                case 1:
+                    {
+                        if (ssq_CurX + ssq_VX <= -40)
+                        {
+                            ssq_CurX = -40;
+                            ssq_VX = 0;
+                            ssq_VY = -2;
+                            state = 2;
+                        }
+                        break;
+                    }
+                case 2:
+                    {
+                        if (ssq_CurY + ssq_VY <= -40)
+                        {
+                            ssq_CurY = -40;
+                            ssq_VX = 2;
+                            ssq_VY = 0;
+                            state = 3;
+                        }
+                        break;
+                    }
+                case 3:
+                    {
+                        if (ssq_CurX + ssq_VX >= 0)
+                        {
+                            ssq_CurX = 0;
+                            ssq_VX = 0;
+                            ssq_VY = 2;
+                            state = 4;
+                        }
+                        break;
+                    }
+                case 4:
+                    {
+                        if (ssq_CurY + ssq_VY >= 0)
+                        {
+                            ssq_CurY = 0;
+                            ssq_VX = -2;
+                            ssq_VY = 0;
+                            state = 1;
+                        }
+                        break;
+                    }
+                default:
+                    break;
+            }
+
+            // Moving square
+            ssq_CurX += ssq_VX;
+            ssq_CurY += ssq_VY;
+            e.Graphics.DrawRectangle(b, this.Width / 2 - 40 + ssq_CurX, this.Height / 2 - 40 + ssq_CurY, 120, 120);
+            
+            #endregion
         }
     }
 }

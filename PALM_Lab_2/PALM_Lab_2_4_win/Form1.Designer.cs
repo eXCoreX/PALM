@@ -1,6 +1,6 @@
 ﻿namespace PALM_Lab_2_4_win
 {
-    partial class Form1
+    partial class MainForm
     {
         /// <summary>
         /// Required designer variable.

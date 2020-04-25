@@ -31,6 +31,11 @@ namespace PALM_Lab_2_4_win
         }
 
         System.Timers.Timer t = new System.Timers.Timer(1000.0/60); // 60 FPS
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            pictureBox1.jokeMode ^= true;
+        }
     }
     public class BetterPictureBox : PictureBox
     {
@@ -67,6 +72,7 @@ namespace PALM_Lab_2_4_win
         int ssq_CurX = 0, ssq_CurY =  0;
         int ssq_VX = ssqInitVX, ssq_VY = 0;
         int state = 1; // 1 left 2 up 3 right 4 down
+        public bool jokeMode = false;
 
         protected override void OnPaint(PaintEventArgs e)
         {
@@ -104,12 +110,12 @@ namespace PALM_Lab_2_4_win
             }
 
             e.Graphics.DrawRectangle(r, new Rectangle(sq_CurX, sq_CurY, sqInitW, sqInitH)); // Square
-            e.Graphics.DrawString("DVD", new Font("Arial", 16), bl_b, sq_CurX, sq_CurY + sqInitH / 4);
+            if(jokeMode) e.Graphics.DrawString("DVD", new Font("Arial", 16 * sqInitW / 50), bl_b, sq_CurX, sq_CurY + sqInitH / 4);
 
             e.Graphics.DrawPolygon(g, new Point[] { new Point(30, 400), new Point(30, 450), new Point(80, 450) }); // Sq Triangle
             e.Graphics.DrawEllipse(b, new Rectangle(140, 180, 100, 60)); // Ellipse 
-            e.Graphics.FillPolygon(y, new Point[] { new Point(300, 300), new Point(315, 335), new Point(360, 340), new Point(330, 360), new Point(350, 390), new Point(300, 370), 
-                                                    new Point(250, 390), new Point(270, 360), new Point(240, 340), new Point(285, 335) }); // Star 
+            e.Graphics.FillPolygon(y, new Point[] { new Point(300, 350), new Point(315, 385), new Point(360, 390), new Point(330, 410), new Point(350, 440), new Point(300, 420), 
+                                                    new Point(250, 440), new Point(270, 410), new Point(240, 390), new Point(285, 385) }); // Star 
 
             #region BicycleDrawing
             e.Graphics.DrawEllipse(bl, new Rectangle(500, 400, 50, 50));

@@ -1,14 +1,7 @@
-﻿// Rostyslav L. Lab 4 Var 13
+﻿// Rostyslav L. KN-19 Lab 4 Var 13
 
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 using System.Timers;
 using System.Windows.Forms;
 
@@ -30,8 +23,9 @@ namespace PALM_Lab_2_4_win
             pictureBox1.Invalidate();
         }
 
-        System.Timers.Timer t = new System.Timers.Timer(1000.0/60); // 60 FPS
+        readonly System.Timers.Timer t = new System.Timers.Timer(1000.0/60); // 60 FPS
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE1006:Naming Styles", Justification = "<Pending>")]
         private void pictureBox1_Click(object sender, EventArgs e)
         {
             pictureBox1.jokeMode ^= true;
@@ -63,8 +57,8 @@ namespace PALM_Lab_2_4_win
         const int ssqInitVX = -2; // only negative
 
         const int circInitW = 60;
-
         #endregion
+
         // Square
         int sq_CurX = sqInitX, sq_CurY = sqInitY;
         int sq_VX = sqInitVX, sq_VY = sqInitVY;

@@ -15,6 +15,7 @@ namespace PALM_Lab_2_3
             hour = h;
             minute = m;
             second = s;
+            Normalize();
         }
 
         public override string ToString()
@@ -24,21 +25,13 @@ namespace PALM_Lab_2_3
 
         public void Normalize()
         {
-            minute += second / 60;
-            second %= 60;
+            second += minute * 60 + hour * 60 * 60;
+            second = second % (60 * 60 * 24);
             if (second < 0)
-            {
-                minute--;
-                second += 60;
-            }
-            hour += minute / 60;
-            minute %= 60;
-            if (minute < 0)
-            {
-                hour--;
-                minute += 60;
-            }
-            hour = ((hour % 24) + 24) % 24;
+                second += 60 * 60 * 24;
+            minute = (second / 60) % 60;
+            hour = (second / (60 * 60)) % 24;
+            second %= 60;
         }
     }
 
@@ -99,18 +92,18 @@ namespace PALM_Lab_2_3
             {
                 t = AddSeconds(t, -8 * 60 * 60);
                 int les_num = 1;
-                while (les_num < 5 && (TimeSinceMidnight(t) >= 1 * 60 * 60 + 40 * 60)) // Counting lessons and breaks 1 through 4
+                while (les_num < 5 && (Difference(t, new MyTime(1, 40, 0)) >= 0)) // Counting lessons and breaks 1 through 4
                 {
                     les_num++;
-                    t = AddSeconds(t, -1 * 60 * 60 - 40 * 60);
+                    t = AddSeconds(t, -1 * 60 * 60 - 40 * 60); // Minus 1h 40m
                 }
-                if (TimeSinceMidnight(t) >= 1 * 60 * 60 + 30 * 60) // after 5th lesson break is 10mins long
+                if (les_num == 5 && Difference(t, new MyTime(1, 30, 0)) >= 0) // after 5th lesson break is 10mins long
                 {
                     les_num++;
                     t = AddSeconds(t, -1 * 60 * 60 - 30 * 60);
                 }
 
-                if (TimeSinceMidnight(t) < 1 * 60 * 60 + 20 * 60)
+                if (Difference(t, new MyTime(1, 20, 0)) < 0)
                 {
                     return $"{les_num}-{(les_num == 3 ? "я" : "а")} пара";
                 }
@@ -151,15 +144,14 @@ namespace PALM_Lab_2_3
             Console.WriteLine("Difference:");
             Console.WriteLine(Difference(t, new MyTime(4, 20, 0)));
 
-            MyTime t1 = new MyTime(6, 30, 2);
+            MyTime t1 = new MyTime(7, 59, 59);
             Console.WriteLine($"What lesson {t1}: {WhatLesson(t1)}");
-            MyTime t2 = new MyTime(8, 2, 0);
+            MyTime t2 = new MyTime(8, 0, 0);
             Console.WriteLine($"What lesson {t2}: {WhatLesson(t2)}");
-            MyTime t3 = new MyTime(14, 20, 25);
+            MyTime t3 = new MyTime(17, 29, 59);
             Console.WriteLine($"What lesson {t3}: {WhatLesson(t3)}");
-            MyTime t4 = new MyTime(17, 35, 20);
+            MyTime t4 = new MyTime(17, 30, 0);
             Console.WriteLine($"What lesson {t4}: {WhatLesson(t4)}");
-
         }
     }
 }

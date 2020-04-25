@@ -26,7 +26,7 @@ namespace PALM_Lab_2_3
         public void Normalize()
         {
             second += minute * 60 + hour * 60 * 60;
-            second = second % (60 * 60 * 24);
+            second %= (60 * 60 * 24);
             if (second < 0)
                 second += 60 * 60 * 24;
             minute = (second / 60) % 60;
@@ -88,33 +88,30 @@ namespace PALM_Lab_2_3
             {
                 return "пари ще не почались";
             }
+            t = AddSeconds(t, -8 * 60 * 60);
+            int les_num = 1;
+            while (les_num < 5 && (Difference(t, new MyTime(1, 40, 0)) >= 0)) // Counting lessons and breaks 1 through 4
+            {
+                les_num++;
+                t = AddSeconds(t, -1 * 60 * 60 - 40 * 60); // -1h 40m
+            }
+            if (les_num == 5 && Difference(t, new MyTime(1, 30, 0)) >= 0) // after 5th lesson break is 10mins long
+            {
+                les_num++;
+                t = AddSeconds(t, -1 * 60 * 60 - 30 * 60); // -1h 30m
+            }
+
+            if (Difference(t, new MyTime(1, 20, 0)) < 0)
+            {
+                return $"{les_num}-{(les_num == 3 ? "я" : "а")} пара";
+            }
+            else if (les_num < 6)
+            {
+                return $"перерва між {les_num}-ю та {les_num + 1}-ю парами";
+            }
             else
             {
-                t = AddSeconds(t, -8 * 60 * 60);
-                int les_num = 1;
-                while (les_num < 5 && (Difference(t, new MyTime(1, 40, 0)) >= 0)) // Counting lessons and breaks 1 through 4
-                {
-                    les_num++;
-                    t = AddSeconds(t, -1 * 60 * 60 - 40 * 60); // Minus 1h 40m
-                }
-                if (les_num == 5 && Difference(t, new MyTime(1, 30, 0)) >= 0) // after 5th lesson break is 10mins long
-                {
-                    les_num++;
-                    t = AddSeconds(t, -1 * 60 * 60 - 30 * 60);
-                }
-
-                if (Difference(t, new MyTime(1, 20, 0)) < 0)
-                {
-                    return $"{les_num}-{(les_num == 3 ? "я" : "а")} пара";
-                }
-                else if (les_num < 6)
-                {
-                    return $"перерва між {les_num}-ю та {les_num + 1}-ю парами";
-                }
-                else
-                {
-                    return "пари вже скінчились";
-                }
+                return "пари вже скінчились";
             }
         }
 

@@ -30,9 +30,9 @@ namespace struct_lab_student
             bool showed = false;
             foreach (var student in students)
             {
-                if (student.mathematicsMark >= '3' &&
-                    student.physicsMark     >= '3' &&
-                    student.informaticsMark >= '3' &&
+                if (student.mathematicsMark >= '3' && student.mathematicsMark <= '5' &&
+                    student.physicsMark     >= '3' && student.physicsMark     <= '5' &&
+                    student.informaticsMark >= '3' && student.informaticsMark <= '5' &&
                     student.scholarship == 0)
                 {
                     Console.WriteLine(student.surName);

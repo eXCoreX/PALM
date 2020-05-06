@@ -15,7 +15,7 @@ namespace struct_lab_student
             List<Student> students = new List<Student>();
             for (int i = 0; i < inputLines.Length; i++)
             {
-                if (!string.IsNullOrEmpty(inputLines[i]))
+                if (!(string.IsNullOrEmpty(inputLines[i]) || string.IsNullOrWhiteSpace(inputLines[i])))
                 {
                     students.Add(new Student(inputLines[i]));
                 }
@@ -25,7 +25,9 @@ namespace struct_lab_student
 
         static void ShowStudents(ref List<Student> students)
         {
+            Console.OutputEncoding = System.Text.Encoding.UTF8;
             Console.WriteLine("Students with marks >=3 and without scholarship: ");
+            bool showed = false;
             foreach (var student in students)
             {
                 if (student.mathematicsMark >= '3' &&
@@ -34,7 +36,12 @@ namespace struct_lab_student
                     student.scholarship == 0)
                 {
                     Console.WriteLine(student.surName);
+                    showed = true;
                 }
+            }
+            if (!showed)
+            {
+                Console.WriteLine("None");
             }
         }
 

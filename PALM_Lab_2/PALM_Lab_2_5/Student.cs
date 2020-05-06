@@ -19,12 +19,13 @@ namespace struct_lab_student
         // Aaa Bbb Ccc M 01.02.2003 5 - 4 0
         public Student(string lineWithAllData)
         {
+            StringBuilder sb = new StringBuilder(lineWithAllData);
             // Removing excess whitespaces
-            for (int i = 0; i < lineWithAllData.Length - 1;)
+            for (int i = 0; i < sb.Length - 1;)
             {
-                if (lineWithAllData[i] == ' ' && lineWithAllData[i + 1] == ' ')
+                if (sb[i] == ' ' && sb[i + 1] == ' ')
                 {
-                    lineWithAllData.Remove(i, 1);
+                    sb = sb.Remove(i, 1);
                 }
                 else
                 {
@@ -32,7 +33,7 @@ namespace struct_lab_student
                 }
             }
 
-            string[] splittedLine = lineWithAllData.Split();
+            string[] splittedLine = sb.ToString().Split();
 
             if (splittedLine.Length != 9)
             {

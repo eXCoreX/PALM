@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Text;
-using System.Linq;
 
 namespace struct_lab_student
 {
